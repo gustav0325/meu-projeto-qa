@@ -4,7 +4,13 @@ from selenium.webdriver.common.by import By
 
 @pytest.fixture
 def driver():
-    driver = webdriver.Chrome()
+   
+    options = webdriver.ChromeOptions()
+    options.add_argument("--headless=new")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    
+    driver = webdriver.Chrome(options=options)
     driver.implicitly_wait(5)
     yield driver
     driver.quit()
